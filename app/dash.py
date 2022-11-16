@@ -174,3 +174,9 @@ with open(r"../models/model.pickle", "rb") as input_file:
     model = pickle.load(input_file)
 
 r = model.predict_proba(df)
+
+proba = r[:, 1][0]
+if proba > 0.5:
+    st.success(f"Não Toxico: {np.round(proba, 2)}")
+else:
+    st.error(f"Toxico: {np.round(proba, 2)}")
